@@ -1,8 +1,15 @@
 import { useStorageUpload } from "@thirdweb-dev/react";
 import React, { useState, useEffect } from "react";
 import { useAddress } from "@thirdweb-dev/react";
-import { deloadFile, encodeRemoteAttachment } from "./xmtp-helper";
+import { deloadFile, encodeRemoteAttachment } from "@/helpers/attachments";
 import styles from "./Chat.module.css";
+
+import {
+  AttachmentCodec,
+  RemoteAttachmentCodec,
+  ContentTypeAttachment,
+  ContentTypeRemoteAttachment,
+} from "xmtp-content-type-remote-attachment";
 
 function Chat({ client, messageHistory, conversation }) {
   const address = useAddress();
@@ -142,10 +149,10 @@ function Chat({ client, messageHistory, conversation }) {
     return (
       <ul>
         {messages.map((message, index) => (
-          <li key={message.id} title="Click to log this message to the console">
-            <strong>
-              {message.senderAddress === address ? "You" : "Bot"}:
-            </strong>
+          <li
+            className={message.senderAddress === address ? "me" : "you"}
+            key={message.id}
+            title="Click to log this message to the console">
             {(() => {
               if (message.contentType.sameAs(ContentTypeRemoteAttachment)) {
                 // Handle ContentTypeRemoteAttachment
@@ -162,7 +169,7 @@ function Chat({ client, messageHistory, conversation }) {
               }
             })()}
             <span> ({message.sent.toLocaleTimeString()})</span>
-            <span classNamae={styles.eyes} onClick={() => handleClick(message)}>
+            <span className={styles.eyes} onClick={() => handleClick(message)}>
               👀
             </span>
           </li>

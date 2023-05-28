@@ -68,3 +68,8 @@
   color: grey;
   font-size: 12px;
 }
+
+.you {
+  float: right;
+  text-align: right;
+}

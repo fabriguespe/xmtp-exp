@@ -9,8 +9,6 @@ import {
 } from "xmtp-content-type-remote-attachment";
 import styles from "./Home.module.css";
 
-const PEER_ADDRESS = "0x0AD3A479B31072bc14bDE6AaD601e4cbF13e78a8";
-
 export default function Home() {
   const [messages, setMessages] = useState(null);
   const convRef = useRef(null);
@@ -47,7 +45,8 @@ export default function Home() {
     //RemoteAttachmentCodec is for remote attachments (>1MB) using thirdweb storage
     xmtp.registerCodec(new RemoteAttachmentCodec());
     //Create or load conversation with Gm bot
-    newConversation(xmtp, PEER_ADDRESS);
+    console.log(process.env, "env");
+    newConversation(xmtp, process.env.BOT_ADDRESS);
     // Set the XMTP client in state for later use
     setXmtpConnected(!!xmtp.address);
     //Set the client in the ref
@@ -55,6 +54,7 @@ export default function Home() {
   };
 
   useEffect(() => {
+    console.log(process.env);
     if (xmtpConnected && convRef.current) {
       // Function to stream new messages in the conversation
       const streamMessages = async () => {
