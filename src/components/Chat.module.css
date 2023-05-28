@@ -11,7 +11,9 @@
   justify-content: center;
   margin: 0;
 }
-
+.chatContainer {
+  width: 100%;
+}
 .messageContainer {
   flex: 1;
   overflow-y: auto;
@@ -70,6 +72,10 @@
 }
 
 .you {
-  float: right;
-  text-align: right;
+  text-align: right !important;
+}
+.you span {
+  padding: 2px;
+  border-radius: 5px;
+  color: blue;
 }

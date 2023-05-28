@@ -147,10 +147,12 @@ function Chat({ client, messageHistory, conversation }) {
     );
 
     return (
-      <ul>
+      <ul className={styles.chatContainer}>
         {messages.map((message, index) => (
           <li
-            className={message.senderAddress === address ? "me" : "you"}
+            className={
+              message.senderAddress === address ? styles.me : styles.you
+            }
             key={message.id}
             title="Click to log this message to the console">
             {(() => {
