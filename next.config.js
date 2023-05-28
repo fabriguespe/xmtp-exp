@@ -1,6 +1,8 @@
 /** @type {import('next').NextConfig} */
-const nextConfig = {
+module.exports = {
   reactStrictMode: true,
+  env: {
+    EVERYNAME_KEY: "test",
+    XMTP_ENV: "dev",
+  },
 };
-
-module.exports = nextConfig;

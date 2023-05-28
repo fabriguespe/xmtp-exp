@@ -20,7 +20,6 @@
     "autoprefixer": "10.4.14",
     "eslint": "8.40.0",
     "eslint-config-next": "13.4.2",
-    "fs": "^0.0.1-security",
     "next": "13.4.2",
     "postcss": "8.4.23",
     "react": "18.2.0",
@@ -28,7 +27,6 @@
     "react-markdown": "^8.0.7",
     "tailwindcss": "3.3.2",
     "typescript": "5.0.4",
-    "xmtp-content-type-remote-attachment": "^1.0.6",
-    "xmtp-helper": "^1.0.3"
+    "xmtp-content-type-remote-attachment": "^1.0.6"
   }
 }
