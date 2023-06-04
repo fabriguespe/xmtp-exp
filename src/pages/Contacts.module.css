@@ -1,0 +1,27 @@
+/* Contacts.module.css */
+
+.contacts {
+  padding: 1em;
+  background-color: white;
+  min-height: calc(100vh - 60px); /* Adjust as per the height of BottomNav */
+}
+
+.contactItem {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #ddd;
+  padding: 10px 0;
+  color: black;
+  text-decoration: none;
+}
+
+.contactName {
+  font-size: 1.1em;
+  font-weight: 500;
+}
+
+.wallet {
+  font-size: 0.9em;
+  color: #888;
+}

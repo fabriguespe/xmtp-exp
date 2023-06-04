@@ -1,4 +1,5 @@
 const ENCODING = "binary";
+import { getEnv } from "./xmtp";
 
 export const buildLocalStorageKey = (walletAddress) =>
   walletAddress ? `xmtp:${getEnv}:keys:${walletAddress}` : "";

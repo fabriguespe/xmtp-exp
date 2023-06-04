@@ -3,6 +3,7 @@ import { useAddress, useSigner } from "@thirdweb-dev/react";
 import { Client } from "@xmtp/xmtp-js";
 import React, { useEffect, useState, useRef } from "react";
 import Chat from "./Chat";
+import { loadKeys, storeKeys, options } from "@/helpers/keys";
 import {
   AttachmentCodec,
   RemoteAttachmentCodec,
@@ -38,6 +39,23 @@ export default function Home() {
 
   // Function to initialize the XMTP client
   const initXmtp = async function () {
+    // create a client using keys returned from getKeys
+    //Use signer wallet from ThirdWeb hook `useSigner`
+    const address = await signer.getAddress();
+    let keys = loadKeys(address);
+    if (!keys) {
+      keys = await Client.getKeys(signer, {
+        ...options,
+        // we don't need to publish the contact here since it
+        // will happen when we create the client later
+        skipContactPublishing: true,
+        // we can skip persistence on the keystore for this short-lived
+        // instance
+        persistConversations: false,
+      });
+      storeKeys(address, keys);
+    }
+
     // Create the XMTP client
     const xmtp = await Client.create(signer, { env: "production" });
     // Register the codecs. AttachmentCodec is for local attachments (<1MB)
